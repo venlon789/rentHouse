@@ -80,7 +80,7 @@
               :style="{ height: '100%' }"
             >
               <!-- 户型 -->
-              <van-checkbox-group v-model="roomResult">
+              <van-checkbox-group v-model="roomTypeResult">
                 <div class="box">
                   <h1>户型</h1>
                   <van-row class="tags clicktags">
@@ -100,8 +100,10 @@
                     </van-checkbox>
                   </van-row>
                 </div>
-                <!-- /户型 -->
-                <!-- 朝向 -->
+              </van-checkbox-group>
+              <!-- /户型 -->
+              <!-- 朝向 -->
+              <van-checkbox-group v-model="orientedSelsetlist">
                 <div class="box">
                   <h1>朝向</h1>
                   <van-row class="tags clicktags">
@@ -121,10 +123,10 @@
                     </van-checkbox>
                   </van-row>
                 </div>
-
-                <!-- /朝向 -->
-                <!-- 楼层 -->
-
+              </van-checkbox-group>
+              <!-- /朝向 -->
+              <!-- 楼层 -->
+              <van-checkbox-group v-model="floorSelsetlist">
                 <div class="box">
                   <h1>楼层</h1>
                   <van-row class="tags clicktags">
@@ -144,10 +146,10 @@
                     </van-checkbox>
                   </van-row>
                 </div>
-
-                <!-- /楼层 -->
-                <!-- 房屋亮点 -->
-
+              </van-checkbox-group>
+              <!-- /楼层 -->
+              <!-- 房屋亮点 -->
+              <van-checkbox-group v-model="characterSelsetlist">
                 <div class="box">
                   <h1>房屋亮点</h1>
                   <van-row class="tags clicktags">
@@ -214,8 +216,14 @@ export default {
 
   data () {
     return {
-      // 右边弹出层，选择房子更多属性值后给后台传值
-      roomResult: [],
+      // 选择房子类型给后台传值
+      roomTypeResult: [],
+      // 选择房子朝向给后台传值
+      orientedSelsetlist: [],
+      // 选择房子楼层给后台传值
+      floorSelsetlist: [],
+      // 选择房子亮点给后台传值
+      characterSelsetlist: [],
       // 区域的展示
       areaValueID: '',
       areaShow: false,
@@ -232,18 +240,10 @@ export default {
       },
       rentypelist: {
         province_list: {
-        },
-        city_list: {
-        },
-        county_list: {
         }
       },
       pricelist: {
         province_list: {
-        },
-        city_list: {
-        },
-        county_list: {
         }
       },
       loading: false,
@@ -470,10 +470,6 @@ export default {
     },
     sureFn () {
       this.$refs.popupDom.toggle()
-      if (this.roomResult.length === 0) return
-      this.queryHouseObj.more = this.roomResult.join(',')
-      this.queryHouseList = []
-      this.getqueryHouse(this.queryHouseObj)
     }
   },
   computed: { ...mapState(['cityId']) },
@@ -633,7 +629,6 @@ export default {
     .chechbox {
       color: #21b97a;
       border: #21b97a 1px solid;
-      background-color: #defaef;
     }
   }
 

@@ -34,6 +34,27 @@ const routes = [
   {
     path: '/city',
     component: () => import('@/views/CityPage')
+  },
+  {
+    path: '/map',
+    component: () => import('@/views/MapPage')
+  },
+  {
+    path: '/roomdetail/:houseCode',
+    name: 'roomdetail',
+    component: () => import('@/views/RoomDetailPage')
+  },
+  {
+    path: '/addroom',
+    component: () => import('@/views/AddRoomPage')
+  },
+  {
+    path: '/manage',
+    component: () => import('@/views/ManageHousePage')
+  },
+  {
+    path: '/searcharea',
+    component: () => import('@/views/SearchArea')
   }
 ]
 
